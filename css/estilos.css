@@ -1,0 +1,495 @@
+html, body, h1, h2, p, span {
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a:link, a:visited {
+    text-decoration: none;
+    list-style: none;
+    color: #b1b5b8;
+}
+
+nav {
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #b1b5b8;
+}
+
+nav ul {
+    float: left;
+    margin-left: 14px;
+    margin-right: 66px;
+}
+
+nav ul li {
+    margin: 10px 0px;
+    padding: 0 12px 0 12px;
+    display: inline-block;
+}
+
+nav img {
+    height: 24px;
+    float: left;
+    margin: 0;
+    display: inline-block;
+}
+
+nav input {
+    width: 370px;
+    height: 38px;
+    border: none;
+    border-radius: 5px;
+    margin: 0 auto;
+    font-weight: 400;
+    padding: 0 48px;
+    color: #1b2126;
+    font-size: 16px;
+    font-family: "Nunito Sans", sans-serif;
+    display: inline-block;
+    background-image: url(../img/lupa.png);
+    background-color: #5c6269;
+    background-repeat: no-repeat;
+    background-position: 14px; 
+}
+
+nav input placeholder {
+    color: #1b2126;
+}
+
+::-webkit-input-placeholder {
+    color: #1b2126;
+}
+
+:-moz-placeholder {
+    color: #1b2126;
+}
+
+::-moz-placeholder {
+    color: #1b2126;
+}
+
+:-ms-input-placeholder {
+    color: #1b2126;
+}
+
+nav {
+    font-weight: 400;
+    font-size: 16.14px;
+    font-family: "Nunito Sans", sans-serif;
+}
+
+h1, h2, span {
+    font-weight: 400;
+    font-family: "Nunito Sans", sans-serif;
+}
+            
+h1 {
+    font-size: 33px;
+}
+
+h2 {
+    font-size: 26px;
+}
+
+p {
+    font-weight: 600;
+    font-size: 16px;
+    font-family: "Nunito Sans", sans-serif;
+}
+
+iframe {
+    margin: -4px 0;
+    border: 1px solid #000000;
+}
+
+aside {
+    margin: 0;
+    box-sizing: border-box;
+    flex: 3;
+    padding-right: 25px;
+    border-right: 1px solid #ebeef0;
+    justify-content: space-around;
+}
+            
+aside img:nth-child(1) {
+    margin: 0;
+}
+
+aside img {
+    margin: 18px 0 21px 0;
+}
+            
+section {
+    flex: 9;
+    margin-left: 15px;
+}
+
+section .flex-container:nth-child(2) {
+    margin-top: -15px;
+}
+
+hr {
+    border: 1px solid #ebeef0;
+    margin: 0 0 15px 0;
+}
+            
+#filtro {
+    display: flex;
+    flex: 3;
+}
+            
+#filtro, #encontrados div p:nth-child(1), #encontrados p {
+    color: #5c6269; 
+}
+
+#encontrados {
+    display: flex;
+    flex: 9;
+}
+            
+#encontrados div {
+    flex: 12;
+    margin-right: 10px;
+    text-align: right;
+    float: right;
+}
+            
+#encontrados div p:nth-child(1) {
+    display: inline-block;
+}
+            
+#encontrados img {
+    float: right;
+    padding: 10px;
+    display: inline-block;
+}
+
+#encontrados span {
+    color: #1b2126;
+    margin-left: 10px;
+    font-style: 700;
+}
+            
+#filtro, #encontrados {
+    margin: 27px 0 35px 0;
+}
+
+#encontrados span {
+    margin-left: 14px;
+}
+            
+#filtro img {
+    margin-right: 32px;
+    height: 25px;
+    width: 27px;
+}
+            
+#filtro p {
+    margin: 0;
+}
+            
+#filtro p:nth-child(3) {
+    flex: 12;
+    color: #f3644f;
+    text-align: right;
+}
+
+#generos .generos:nth-child(2) {
+    margin-right: 0px;
+}
+
+#similares p:nth-child(1) {
+    color: #5c6167;
+    margin: 22px 0 8px 0;
+}
+
+#generos {
+    margin-top: 15px;
+}
+
+#popup {
+    visibility: hidden;
+    opacity: 0;
+    margin-top: -300px;
+}
+
+#popup:target {
+    visibility: visible;
+    opacity: 1;
+    background-color: rgba(0,0,0,0.6);
+    top: 0;
+    left: 0;
+    margin: 0;
+}
+
+.wrapper {
+    width: 1170px;
+    margin: 0 auto;
+}
+
+.menu, nav {
+    height: 68px;
+    width: 100%;
+    background-color: #1b2126;
+    box-sizing: border-box;
+}
+
+.foto {
+    flex: 3;
+    width: 269px;
+    height: 403px;
+    margin: 15px;
+    background: url("../img/interstellar.jpg") 50% no-repeat;
+    background-size: 108%;
+}
+
+.similar {
+    margin: 30px 14px;
+    height: 380px;
+    display: inline-block;
+}
+
+.similar div {
+    flex: 3;
+    width: 270px;
+    height: 240px;
+    background: url("../img/origen.jpg") 50% 60% no-repeat;
+    background-size: 140%;
+}
+
+.similar:nth-child(1) {
+    margin-left: 0;
+}
+
+.similar:nth-child(4) {
+    margin-right: 0;
+}
+            
+.similar h2 {
+    text-align: center;
+    margin: 15px 0;
+}
+
+.capa:hover {
+    transition: .3s ease;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.capa:hover .datos {
+    transition: .3s ease;
+    opacity: 1;
+}
+
+.capa {
+    z-index: 1;
+    margin: 0;
+    height: 403px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.datos {
+    position: absolute;
+    top: 515px;
+    z-index: 2;
+    padding: 7px 15px;
+    height: 43px;
+    width: 269px;
+    opacity: 0;
+    color: #ffffff;
+    font-size: 12px;
+    box-sizing: border-box;
+    background-color: rgba(0,0,0,0.6);
+}
+            
+.dato {
+    padding: 2px 0;
+    margin: 0 10px;
+    box-sizing: border-box;
+}
+
+.dato:nth-child(3) {
+    margin-right: 0;
+}
+            
+.dato img {
+    float: left;
+    margin-right: 6px;
+}
+            
+.dato p {
+    float: right;
+    padding: 2;
+}
+            
+.icono {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+}
+
+.ayo {
+    height: 19px;
+    padding: 0 5px;
+    margin: 7px 0;
+    margin-right: 0px;
+    box-sizing: border-box;
+    font-weight: 700;
+    color: #ebeef0;
+    border-radius: 20px;
+    border: 2px solid #ebeef0;
+    display: inline-block;
+}
+
+.ayo p {
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+.flex-container {
+    display: flex;
+}
+            
+.titulo {
+    flex: 3;
+    line-height: 2;
+}
+
+.ventana {
+    position: fixed;
+    z-index: 3;
+    padding-top: 100px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+            
+.ventana-contenido {
+    background-color: #fefefe;
+    margin: 0 auto;
+    padding: 23px 26px;
+    border: 1px solid #888;
+    width: 1224px;
+    box-sizing: border-box;
+}
+            
+.ventana-contenido aside {
+    border-right: 0px solid #ffffff;
+}
+
+.ventana-contenido section {
+    margin-left: 0;
+}
+         
+.ventana-contenido .foto {
+    margin: 0;
+    width: 440px;
+    height: 660px;
+}
+            
+.ventana-contenido h2 {
+    flex: 3;
+    line-height: 0.9;
+    margin-bottom: 32px;
+}
+          
+.ventana-contenido hr {
+    margin: 7px 0 15px 0;
+}
+
+.ventana-contenido .titulo {
+    margin-top: 5px;
+}
+
+.titulo span, .sipnosis span {
+    color: #919297;
+    font-size: 18px;
+}
+            
+.titulo span, .sipnosis span, .subtitulo, .ventana-contenido p {
+    color: #919297;
+    font-weight: 400;
+}
+
+.sipnosis span:nth-child(2) {
+    font-size: 20px;
+}
+            
+.subtitulo p {
+    margin: 12px 0 29px 0;
+    font-weight: 700;
+}
+            
+.subtitulo span {
+    text-decoration: underline;
+}
+            
+.parrafo p {
+    margin: 18px 0 90px 0;
+    line-height: 1.8;
+}
+            
+.close {
+    color: #f3644f;
+    border: 3px solid #f3644f;
+    border-radius: 46px;
+    height: 46px;
+    width: 46px;
+    float: right;
+    line-height: 1;
+    font-size: 38px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.close:hover, .close:focus {
+    text-decoration: none;
+    cursor: pointer;
+}
+            
+.generopelicula {
+    background-color: #e8ecef;
+    border-radius: 3px;
+    height: 28px;
+    margin-right: 4px;
+    padding: 4px 10px;
+    display: inline-block;
+    box-sizing: border-box;
+}
+            
+.generopelicula p {
+    font-size: 14px;
+    color: #5e6369;
+}
+
+.generos {
+    display: inline-block;
+    width: 116px;
+    margin: 4.5px 0;
+    margin-right: 8px;
+    padding: 3px;
+    height: 31px;
+    color: #8e9297;
+    border: 2px solid #ebeef0;
+    border-radius: 6px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.generos:hover {
+    color: #2883d8;
+    border: 2px solid #2883d8;
+}
+            
+.categorias {
+    flex: 3;
+    float: left;
+    display: inline-block;
+}
+            
+.datos2, .dato {
+    display: inline-block;
+}
