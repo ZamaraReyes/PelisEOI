@@ -1,29 +1,28 @@
-<html>
+<html lang="es" ng-app="EOI">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name='viewport' 
       content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+        <base href="/">
         <title>PelisEOI</title>
         <link href="css/estilos.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700" rel="stylesheet">
-        <!--<link href="css/bootstrap.css" rel="stylesheet">-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
-    <body>
-        <style>
-            
-
-            
-        </style>
+    <body ng-cloak>
+        
         <div class="menu">
             <nav class="wrapper flex-container">
-                <img src="img/logo.png">
+                <a href="/"><img src="img/logo.png"></a>
                 <ul>
-                    <a href="#"><li>Categorias</li></a>
-                    <a href="#"><li>Mejor valoradas</li></a>
-                    <a href="#"><li>Populares ahora</li></a>
-                    <a href="#"><li>Próximamente</li></a>
+                    <a ng-click="searchCategory()"><li>Categorias</li></a>
+                    <a ng-click="searchBest()"><li>Mejor valoradas</li></a>
+                    <a ng-click="searchPopular(popular)"><li>Populares ahora</li></a>
+                    <a ng-click="searchComing()"><li>Próximamente</li></a>
+                    <a href="/favorites"><li>Favoritos</li></a>
                 </ul>
-                <input type="text" placeholder="Encuentra tu película favorita">
+                <input type="text" placeholder="Encuentra tu película favorita" ng-model="searchPeli">
             </nav>
         </div>
         
@@ -43,37 +42,15 @@
                         <p>1979 - 2015</p>
                     </div>
                 </div>
-                <img src="img/slider1.png">
-                
-                <div class="flex-container">
-                    <div class="titulo">
-                        <p>Valoración IMDB</p>
-                    </div>
-                    <div class="ayo">
-                        <p>0 - 5</p>
-                    </div>
+                <div class="filtro">
+                    <div class="boton azul"><p>d</p></div>
+                    <div class="boton verde"><p>d</p></div>
+                    <div class="linea"></div>
                 </div>
-                <img src="img/slider1.png">
-                
-                <div class="flex-container">
-                    <div class="titulo">
-                        <p>Rotten Tomatoes - CS</p>
-                    </div>
-                    <div class="ayo">
-                        <p>0 - 50</p>
-                    </div>
+                <div>
+                    <rzslider rz-slider-model="vm.slider_toggle.value" rz-slider-options="vm.slider_toggle.options"></rzslider>
                 </div>
-                <img src="img/slider1.png">
                 
-                <div class="flex-container">
-                    <div class="titulo">
-                        <p>Rotten Tomatoes - AS</p>
-                    </div>
-                    <div class="ayo">
-                        <p>0 - 50</p>
-                    </div>
-                </div>
-                <img src="img/slider1.png">
                 
                 <div class="flex-container">
                     <div class="titulo">
@@ -83,235 +60,45 @@
                 
                 <div id="generos">
                     <div class="flex-container">
-                        <div class="generos"><p>Acción</p></div>
-                        <div class="generos"><p>Aventura</p></div>
+                        <a href="" class="generos"><p>Acción</p></a>
+                        <a href="" class="generos"><p>Aventura</p></a>
+                        <a href="" class="generos"><p>Animación</p></a>
+                        <a href="" class="generos"><p>Comedia</p></a>
+                        <a href="" class="generos"><p>Crimen</p></a>
+                        <a href="" class="generos"><p>Documental</p></a>
+                        <a href="" class="generos"><p>Drama</p></a>
+                        <a href="" class="generos"><p>Familiar</p></a>
+                        <a href="" class="generos"><p>Fantasía</p></a>
+                        <a href="" class="generos"><p>Históricas</p></a>
+                        <a href="" class="generos"><p>Horror</p></a>
+                        <a href="" class="generos"><p>Música</p></a>
+                        <a href="" class="generos"><p>Misterio</p></a>
+                        <a href="" class="generos"><p>Romance</p></a>
+                        <a href="" class="generos"><p>Ficción</p></a>
+                        <a href="" class="generos"><p>TV Movies</p></a>
+                        <a href="" class="generos"><p>Thiller</p></a>
+                        <a href="" class="generos"><p>Guerra</p></a>
+                        <a href="" class="generos"><p>Western</p></a>
                     </div>
-                    <div class="flex-container">
-                        <div class="generos"><p>Animación</p></div>
-                        <div class="generos"><p>Comedia</p></div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="generos"><p>Crimen</p></div>
-                        <div class="generos"><p>Documental</p></div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="generos"><p>Drama</p></div>
-                        <div class="generos"><p>Familiar</p></div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="generos"><p>Fantasía</p></div>
-                        <div class="generos"><p>Históricas</p></div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="generos"><p>Horror</p></div>
-                        <div class="generos"><p>Música</p></div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="generos"><p>Misterio</p></div>
-                        <div class="generos"><p>Romance</p></div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="generos"><p>Ficción</p></div>
-                        <div class="generos"><p>TV Movies</p></div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="generos"><p>Thiller</p></div>
-                        <div class="generos"><p>Guerra</p></div>
-                    </div>
-                    <div class="flex-container">
-                        <div class="generos"><p>Western</p></div>
-                    </div>
-                </div>
-                
+                </div>  
             </aside>
-
-            <section>
-                
-                <div class="flex-container">
-                    <div id="encontrados">
-                        <p><span>107,875</span> películas encontradas</p>
-                        <div>
-                            <p>Ordenar</p>
-                            <img src="img/arrowdown.png">
-                        </div>
-                    </div>
-                 </div>
-                
-                
-                <div class="flex-container">
-                   <a href="#popup">
-                       <div class="foto">
-                            <div class="capa">
-                               <div class="datos flex-container">
-                                    <div class="dato">
-                                        <img class="icono" src="img/favorito.png">
-                                        <p>8.4</p>
-                                    </div>
-
-                                    <div class="dato">
-                                        <img src="img/tomato.png">
-                                        <p>77%</p>
-                                    </div>
-
-                                    <div class="dato">
-                                        <img src="img/palomitas.png">
-                                        <p>77%</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="foto">
-                      <div class="capa"></div>
-                    </div>
-                    <div class="foto">
-                      <div class="capa"></div>
-                    </div>
-                </div>
-                
-                <div class="flex-container">
-                   <a href="#popup">
-                       <div class="foto">
-                            <div class="capa">
-                               <div class="datos flex-container">
-                                    <div class="dato">
-                                        <img class="icono" src="img/favorito.png">
-                                        <p>8.4</p>
-                                    </div>
-
-                                    <div class="dato">
-                                        <img src="img/tomato.png">
-                                        <p>77%</p>
-                                    </div>
-
-                                    <div class="dato">
-                                        <img src="img/palomitas.png">
-                                        <p>77%</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="foto">
-                      <div class="capa"></div>
-                    </div>
-                    <div class="foto">
-                      <div class="capa"></div>
-                    </div>
-                </div>
-                
-                
-                <div class="ventana" id="popup">
-                    <div class="ventana-contenido">
-                        <div class="flex-container">
-                            <h1 class="titulo">Interstellar
-                            <span>2014</span></h1>
-                            <a href="#"><span class="close">&times;</span></a>
-                        </div>
-                        <hr>
-                        
-                        <div class="flex-container">
-                            <aside>
-                                <div class="foto"></div>
-                            </aside>
-                            
-                            <section>
-                                <div class="sipnosis flex-container">
-                                    <h2>Sipnosis</h2>
-                                    <span>2h15m</span>
-                                </div>
-                                <div class="flex-container">
-                                    <div class="categorias">
-                                        <div class="generopelicula">
-                                            <p>Aventura</p>
-                                        </div>
-                                        <div class="generopelicula">
-                                            <p>Sci-Fi</p>
-                                        </div>
-                                    </div>
-                                    <div class="datos2">
-                                        <div class="dato">
-                                            <img class="icono" src="img/favorito.png">
-                                            <p>8.4</p>
-                                        </div>
-                                        <div class="dato">
-                                            <img src="img/tomato.png">
-                                            <p>77%</p>
-                                        </div>
-                                        <div class="dato">
-                                            <img src="img/palomitas.png">
-                                            <p>77%</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="parrafo">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi inventore magnam reprehenderit unde culpa maiores dolor, accusamus voluptatem asperiores, et repudiandae perferendis modi doloribus qui mollitia at saepe ullam deleniti!</p>
-                                    
-                                    <h2>Trailer</h2>
-                                    <iframe width="703" height="342" src="https://www.youtube.com/embed/Rt2LHkSwdPQ">
-                                    </iframe>
-                                </div>
-                            </section>
-                             
-                        </div>
-                        <div class="subtitulo">
-                            <p>Subs: <span>en</span> <span>es</span> <span>de</span></p>
-                        </div>
-                        <hr>
-                        <div id="similares">
-                            <p>Películas similares</p>
-
-                            <div class="flex-container">
-                                <div class="similar">
-                                    <div></div>
-                                    <h2>Inception</h2>
-                                </div>
-                                <div class="similar">
-                                    <div></div>
-                                    <h2>Inception</h2>
-                                </div>
-                                <div class="similar">
-                                    <div></div>
-                                    <h2>Inception</h2>
-                                </div>
-                                <div class="similar">
-                                    <div></div>
-                                    <h2>Inception</h2>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-
-            </section>
+        
+            <section ng-view></section>
+        
         </div>
         
-        <script>
-            
-
-        /*var modal = document.getElementById("ventana");
-        var btn = document.getElementById("interstellar");
-        var span = document.getElementsByClassName("close")[0];
-
-
-        btn.onclick = function() {
-            modal.style.display = "block";
-        }
-
-
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
-
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }*/
-
+        
+        <script src="libs/angular/angular.min.js"></script>
+        <script src="libs/angular/angular-route.min.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/factories/films.factory.js"></script>
+        <script src="js/factories/films.http.js"></script>
+        <script src="js/controllers/home.controller.js">
         </script>
+        <script src="js/controllers/film.controller.js">
+        </script>
+        <script src="js/controllers/list.controller.js">
+        </script>
+        <script src="https://rawgit.com/rzajac/angularjs-slider/master/dist/rzslider.js"></script>
     </body>
 </html>
