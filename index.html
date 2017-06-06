@@ -7,26 +7,29 @@
         <title>PelisEOI</title>
         <link href="css/estilos.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="libs/rzslider/rzslider.css">
+        <link rel="stylesheet" href="libs/ngdialog/ngDialog.min.css">
+        <link rel="stylesheet" href="libs/ngdialog/ngDialog-theme-default.min.css">
     </head>
-    <body ng-cloak>
+    <body ng-cloak ng-controller="HomeController">
         
         <div class="menu">
             <nav class="wrapper flex-container">
                 <a href="/"><img src="img/logo.png"></a>
                 <ul>
-                    <a ng-click="searchCategory()"><li>Categorias</li></a>
-                    <a ng-click="searchBest()"><li>Mejor valoradas</li></a>
-                    <a ng-click="searchPopular(popular)"><li>Populares ahora</li></a>
-                    <a ng-click="searchComing()"><li>Próximamente</li></a>
+                    <a href="/best"><li>Mejor valoradas</li></a>
+                    <a href="/popularity"><li>Populares ahora</li></a>
+                    <a href="/coming"><li>Próximamente</li></a>
                     <a href="/favorites"><li>Favoritos</li></a>
                 </ul>
-                <input type="text" placeholder="Encuentra tu película favorita" ng-model="searchPeli">
+                <input type="text" placeholder="Encuentra tu película favorita" ng-model="searchPeli" ng-keypress="keyPress($event, 'search')">
+                <a href="/search" ng-click="search(film)">En</a>
             </nav>
         </div>
         
-        <div class="wrapper flex-container">
+        <!--<div class="wrapper flex-container">
             <aside>
                 <div id="filtro" class="flex-container">
                     <img src="img/filtro.png">
@@ -43,13 +46,20 @@
                     </div>
                 </div>
                 <div class="filtro">
-                    <div class="boton azul"><p>d</p></div>
-                    <div class="boton verde"><p>d</p></div>
-                    <div class="linea"></div>
+                    <rzslider rz-slider-model="slider.min" rz-slider-high="slider.max" rz-slider-options="slider.options"></rzslider>
+                    <!--<rzslider ng-model="sliders.sliderValue" min="{{testOptions.min}}" step="{{testOptions.step}}" max="{{testOptions.max}}"></rzslider>
+                    {{testOptions.min}}
+                    
                 </div>
-                <div>
-                    <rzslider rz-slider-model="vm.slider_toggle.value" rz-slider-options="vm.slider_toggle.options"></rzslider>
-                </div>
+                {{minyear}}
+                {{maxyear}}
+                {{slider.min}}
+                {{slider.max}}
+                <!--<h1>Score: {{data.grade}}</h1>
+                <label for="s1">Slider 1: {{sliders.min}}</label><br>
+                <input type="range" max="10" min="5" step="0.5" ng-model="sliders.max"> <br>
+                <label for="s2">Slider : {{sliders.max}}</label><br>
+                <input type="range" max="10" min="5" step="0.5" ng-model="sliders.min">
                 
                 
                 <div class="flex-container">
@@ -60,45 +70,145 @@
                 
                 <div id="generos">
                     <div class="flex-container">
-                        <a href="" class="generos"><p>Acción</p></a>
-                        <a href="" class="generos"><p>Aventura</p></a>
-                        <a href="" class="generos"><p>Animación</p></a>
-                        <a href="" class="generos"><p>Comedia</p></a>
-                        <a href="" class="generos"><p>Crimen</p></a>
-                        <a href="" class="generos"><p>Documental</p></a>
-                        <a href="" class="generos"><p>Drama</p></a>
-                        <a href="" class="generos"><p>Familiar</p></a>
-                        <a href="" class="generos"><p>Fantasía</p></a>
-                        <a href="" class="generos"><p>Históricas</p></a>
-                        <a href="" class="generos"><p>Horror</p></a>
-                        <a href="" class="generos"><p>Música</p></a>
-                        <a href="" class="generos"><p>Misterio</p></a>
-                        <a href="" class="generos"><p>Romance</p></a>
-                        <a href="" class="generos"><p>Ficción</p></a>
-                        <a href="" class="generos"><p>TV Movies</p></a>
-                        <a href="" class="generos"><p>Thiller</p></a>
-                        <a href="" class="generos"><p>Guerra</p></a>
-                        <a href="" class="generos"><p>Western</p></a>
+                        <a href="" class="generos" ng-click="searchGenre(28)"><p>Acción</p></a>
+                        <a href="/aventure" class="generos" ng-click="searchGenre(12)"><p>Aventura</p></a>
+                        <a href="" class="generos" ng-click="searchGenre(16)"><p>Animación</p></a>
+                        <a href="" class="generos" ng-click="searchGenre(35)"><p>Comedia</p></a>
+                        <a href="" class="generos" ng-click="searchGenre(80)"><p>Crimen</p></a>
+                        <a href="" class="generos" ng-click="searchGenre(99)"><p>Documental</p></a>
+                        <a href="" class="generos" ng-click="searchGenre(18)"><p>Drama</p></a>
+                        <a href="" class="generos" ng-click="searchGenre(10751)"><p>Familiar</p></a>
+                        <a href="" class="generos" ng-click="searchGenre(14)"><p>Fantasía</p></a>
+                        <a href="" class="generos" ng-click="searchGenre(36)"><p>Históricas</p></a>
+                        <a href="" class="generos" ng-click="searchGenre(27)"><p>Horror</p></a>
+                        <a href="" class="generos" ng-click="searchGenre(10402)"><p>Música</p></a>
+                        <a href="" class="generos" ng-click="searchGenre(9648)"><p>Misterio</p></a>
+                        <a href="" class="generos" ng-click="searchGenre(10749)"><p>Romance</p></a>
+                        <a href="" class="generos" ng-click="searchGenre(878)"><p>Ficción</p></a>
+                        <a href="" class="generos" ng-click="searchGenre(10770)"><p>TV Movies</p></a>
+                        <a href="" class="generos" ng-click="searchGenre(53)"><p>Thiller</p></a>
+                        <a href="" class="generos" ng-click="searchGenre(10752)"><p>Guerra</p></a>
+                        <a href="" class="generos" ng-click="searchGenre(37)"><p>Western</p></a>
                     </div>
                 </div>  
-            </aside>
+            </aside>-->
         
             <section ng-view></section>
         
-        </div>
         
         
         <script src="libs/angular/angular.min.js"></script>
         <script src="libs/angular/angular-route.min.js"></script>
+        <script src="libs/rzslider/rzslider.min.js">
+        </script>
+        <script src="libs/ngdialog/ngDialog.min.js">
+        </script>
         <script src="js/app.js"></script>
         <script src="js/factories/films.factory.js"></script>
         <script src="js/factories/films.http.js"></script>
         <script src="js/controllers/home.controller.js">
         </script>
+        <script src="js/controllers/pop.controller.js">
+        </script>
+        <script src="js/controllers/best.controller.js">
+        </script>
+        <script src="js/controllers/com.controller.js">
+        </script>
         <script src="js/controllers/film.controller.js">
         </script>
         <script src="js/controllers/list.controller.js">
         </script>
-        <script src="https://rawgit.com/rzajac/angularjs-slider/master/dist/rzslider.js"></script>
+        <script src="js/controllers/sear.controller.js">
+        </script>
+        <script src="js/controllers/gener.controller.js">
+        </script>
+        <script type="text/ng-template" id="film.html">
+           
+        
+        <div class="flex-container">
+            <h1 class="titulo">{{film.title}}
+            <span>2014</span></h1>
+            <a href="/"><span class="close">&times;</span></a>
+        </div>
+            <hr>
+                        
+        <div class="flex-container">
+            <aside>
+                <img class="foto" src={{film.photo}}>
+            </aside>
+                            
+            <section>
+                <div class="sipnosis flex-container">
+                    <h2>Sipnosis</h2>
+                    <span>2h15m</span>
+                </div>
+                                <div class="flex-container">
+                                    <div class="categorias">
+                                        <div class="generopelicula">
+                                            <p>Aventura</p>
+                                        </div>
+                                        <div class="generopelicula">
+                                            <p>Sci-Fi</p>
+                                        </div>
+                                    </div>
+                                    <div class="datos2">
+                                        <div class="dato">
+                                            <img class="icono" src="img/favorito.png">
+                                            <p>8.4</p>
+                                        </div>
+                                        <div class="dato">
+                                            <img src="img/tomato.png">
+                                            <p>77%</p>
+                                        </div>
+                                        <div class="dato">
+                                            <img src="img/palomitas.png">
+                                            <p>77%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="parrafo">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi inventore magnam reprehenderit unde culpa maiores dolor, accusamus voluptatem asperiores, et repudiandae perferendis modi doloribus qui mollitia at saepe ullam deleniti!</p>
+                                    
+                                    <h2>Trailer</h2>
+                                    <iframe width="703" height="342" src="https://www.youtube.com/embed/Rt2LHkSwdPQ">
+                                    </iframe>
+                                </div>
+                            </section>
+                             
+                        </div>
+                        <div class="subtitulo">
+                            <ul>
+                                <li><span>Subs:</span></li>
+                                <a href="#"><li>en</li></a>
+                                <a href="#"><li>es</li></a>
+                                <a href="#"><li>de</li></a>
+                            </ul>
+                        </div>
+                        <hr>
+                        <div id="similares">
+                            <h3>Películas similares</h3>
+
+                            <div class="flex-container">
+                                <div class="similar">
+                                    <img src="img/origen.jpg">
+                                    <h2>Inception</h2>
+                                </div>
+                                <div class="similar">
+                                    <img src="img/origen.jpg">
+                                    <h2>Inception</h2>
+                                </div>
+                                <div class="similar">
+                                    <img src="img/origen.jpg">
+                                    <h2>Inception</h2>
+                                </div>
+                                <div class="similar">
+                                    <img src="img/origen.jpg">
+                                    <h2>Inception</h2>
+                                </div>
+                            </div>
+                        </div>
+                    
+</script>
     </body>
 </html>

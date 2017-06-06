@@ -15,10 +15,10 @@
         
         function activate() {
             var filmId = $routeParams.id;
+            /*$scope.film = FilmsHTTP.searchFilm(filmId);*/
+            
             FilmsHTTP.searchFilm(filmId).then(function(film){
                 $scope.film = film;
-                console.log(film);
-                console.log($scope.film);
             })
         }
     }

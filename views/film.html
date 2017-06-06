@@ -1,8 +1,11 @@
 <!--<div class="ventana" id="popup">
     <div class="ventana-contenido">-->
+
+           
+        
         <div class="flex-container">
             <h1 class="titulo">{{film.title}}
-            <span>2014</span></h1>
+            <span>{{film.year}}</span></h1>
             <a href="/"><span class="close">&times;</span></a>
         </div>
             <hr>
@@ -15,16 +18,16 @@
             <section>
                 <div class="sipnosis flex-container">
                     <h2>Sipnosis</h2>
-                    <span>2h15m</span>
+                    <span>{{film.tomatoes}}</span>
                 </div>
                                 <div class="flex-container">
                                     <div class="categorias">
                                         <div class="generopelicula">
-                                            <p>Aventura</p>
+                                            <p>{{genre}}</p>
                                         </div>
-                                        <div class="generopelicula">
+                                        <!--<div class="generopelicula">
                                             <p>Sci-Fi</p>
-                                        </div>
+                                        </div>-->
                                     </div>
                                     <div class="datos2">
                                         <div class="dato">
@@ -33,17 +36,17 @@
                                         </div>
                                         <div class="dato">
                                             <img src="img/tomato.png">
-                                            <p>77%</p>
+                                            <p>{{film.tomatoes}}</p>
                                         </div>
                                         <div class="dato">
                                             <img src="img/palomitas.png">
-                                            <p>77%</p>
+                                            <p>{{film.metracritic}}</p>
                                         </div>
                                     </div>
                                 </div>
                                 
                                 <div class="parrafo">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi inventore magnam reprehenderit unde culpa maiores dolor, accusamus voluptatem asperiores, et repudiandae perferendis modi doloribus qui mollitia at saepe ullam deleniti!</p>
+                                    <p>{{film.overview}}</p>
                                     
                                     <h2>Trailer</h2>
                                     <iframe width="703" height="342" src="https://www.youtube.com/embed/Rt2LHkSwdPQ">
@@ -83,6 +86,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+                    
+
                     <!--</div>
                 </div>-->
