@@ -11,7 +11,8 @@
         $scope.films = [];
         $scope.film = {};
         $scope.favoriteFilms = [];
-
+        $scope.addDesired = addDesired;
+        
     
         activate();
         searchPopular();
@@ -21,10 +22,20 @@
             $scope.favoriteFilms = FilmsFactory.getDesiredList();
         }
         
+        
         function searchPopular() {
             FilmsHTTP.searchPopular().then(function(film){
-                $scope.films = film;
+                $scope.films = film.films;
+                $scope.total = film.totalFilms;
             })
+        }
+        
+        
+        function addDesired(film) {
+            var respuesta = confirm("¿Deseas añadirlo en la lista de deseos?")
+            if (respuesta == true) {
+                FilmsFactory.setDesired(film);
+            }
         }
     }
 })();

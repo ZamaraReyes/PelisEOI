@@ -1,6 +1,6 @@
 <div class="menu">
     <nav class="wrapper flex-container">
-        <a href="https://zamarareyes.github.io/PelisEOI/"><img src="img/logo.png"></a>
+        <a href="/"><img src="img/logo.png"></a>
             <ul>
                 <a href="/best"><li>Mejor valoradas</li></a>
                 <a href="/popularity"><li>Populares ahora</li></a>
@@ -23,23 +23,24 @@
                 <p>Año</p>
             </div>
             <div class="ayo">
-                <p>1979 - 2015</p>
+                <p>{{slider.min}} - {{slider.min}}</p>
             </div>
         </div>
         <div class="filtro">
             <rzslider rz-slider-model="slider.min" rz-slider-high="slider.max" rz-slider-options="slider.options"></rzslider>
         </div>
         
+        
         <div class="flex-container">
-         <div class="titulo">
+            <div class="titulo">
                 <p>Valoración IMDB</p>
             </div>
             <div class="ayo">
-                <p>0 - 5</p>
+                <p>{{sliderVote.voteMin}} - {{sliderVote.voteMax}}</p>
             </div>
         </div>
         <div class="filtro">
-            <rzslider rz-slider-model="sliderVote.min" rz-slider-high="sliderVote.max" rz-slider-options="sliderVote.options"></rzslider>
+            <rzslider rz-slider-model="sliderVote.voteMin" rz-slider-high="sliderVote.voteMax" rz-slider-options="sliderVote.options"></rzslider>
         </div>
                 
                 
@@ -77,10 +78,10 @@
     <section>
         
             <div id="encontrados">
-                <p><span>{{totalFilms}}</span> películas encontradas</p>
+                <p><span>{{total}}</span> películas encontradas</p>
                 <div>
-                    <p>Ordenar</p>
-                    <img src="img/arrowdown.png">
+                    <!--<p>Ordenar</p>
+                    <img src="img/arrowdown.png">-->
                 </div>
             </div>
         
@@ -99,7 +100,7 @@
 
                     <div class="dato">
                         <i class="fa fa-eye"></i>
-                        <a href="film/{{film.id}}">
+                        <a href="/film/{{film.id}}">
                             <p>Ver</p>
                         </a>
                     </div>

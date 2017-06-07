@@ -40,7 +40,7 @@ nav img {
 }
 
 nav input {
-    width: auto;
+    width: 30%;
     height: 38px;
     border: none;
     border-radius: 5px;
@@ -128,10 +128,6 @@ aside img {
 section {
     flex: 9;
     margin-left: 15px;
-}
-
-section .flex-container:nth-child(2) {
-    margin-top: -15px;
 }
 
 hr {
@@ -250,7 +246,8 @@ hr {
 
 .filtro {
     display: flex;
-    padding: 10px 0;
+    margin-top: -10px;
+    padding-bottom: 20px;
     align-content: space-around;
 }
 
@@ -308,8 +305,7 @@ hr {
     display: inline-block;
 }
 
-.similar img {
-    flex: 3;
+.similar div {
     width: 270px;
     height: 240px;
 }
@@ -478,19 +474,18 @@ hr {
 .ventana-contenido .titulo {
     margin-top: 5px;
 }
-
-.titulo span, .sipnosis span {
-    color: #919297;
-    font-size: 18px;
-}
             
 .titulo span, .sipnosis span, .subtitulo, .ventana-contenido p {
     color: #919297;
     font-weight: 400;
 }
 
-.sipnosis span:nth-child(2) {
+.sipnosis span:nth-child(2), .titulo span {
     font-size: 20px;
+}
+
+.sipnosis span {
+    font-size: 18px;
 }
             
 .subtitulo p {
@@ -517,8 +512,9 @@ hr {
 }
             
 .parrafo p {
-    margin: 18px 0 84px 0;
+    margin: 18px 0;
     line-height: 1.8;
+    height: 162px;
 }
             
 .close {

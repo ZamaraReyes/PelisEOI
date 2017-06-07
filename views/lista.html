@@ -1,27 +1,112 @@
-<div class="flex-container">
-    <div id="encontrados">
-        <p>Lista de favoritos</p>
-    </div>
+<div class="menu">
+    <nav class="wrapper flex-container">
+        <a href="/"><img src="img/logo.png"></a>
+            <ul>
+                <a href="/best"><li>Mejor valoradas</li></a>
+                <a href="/popularity"><li>Populares ahora</li></a>
+                <a href="/coming"><li>Próximamente</li></a>
+                <a href="/favorites"><li>Favoritos</li></a>
+            </ul>
+        <input type="text" placeholder="Encuentra tu película favorita" ng-controller="HomeController" ng-model="searchPeli" ng-keypress="keyPress($event)">
+    </nav>
 </div>
-
-<div class="flex-container">
-    <div class="capa" ng-repeat="film in films track by film.id">
-    <div class="datos flex-container">
-        <div class="dato">
-            <img class="icono" src="img/favorito.png">
-            <p>{{film.estrella}}</p>
+<div class="wrapper flex-container">
+    <aside>
+        <div id="filtro" class="flex-container">
+            <img src="img/filtro.png">
+            <p>Filtrar</p>
+            <p>Borrar</p>
         </div>
-
-        <div class="dato">
-            <i class="fa fa-trash-o" ng-click="removeDesired(film)"></i>
-            <p>Eliminar</p>
+                
+        <div class="flex-container">
+            <div class="titulo">
+                <p>Año</p>
+            </div>
+            <div class="ayo">
+                <p>{{slider.min}} - {{slider.min}}</p>
+            </div>
         </div>
-
-        <div class="dato">
-            <i class="fa fa-eye"></i>
-            <a href="/film/{{film.id}}"><p>Ver</p></a>
+        <div class="filtro">
+            <rzslider rz-slider-model="slider.min" rz-slider-high="slider.max" rz-slider-options="slider.options"></rzslider>
         </div>
-    </div>
-    <img class="foto" src="{{film.photo}}">
-    </div>
+        
+        
+        <div class="flex-container">
+            <div class="titulo">
+                <p>Valoración IMDB</p>
+            </div>
+            <div class="ayo">
+                <p>{{sliderVote.voteMin}} - {{sliderVote.voteMax}}</p>
+            </div>
+        </div>
+        <div class="filtro">
+            <rzslider rz-slider-model="sliderVote.voteMin" rz-slider-high="sliderVote.voteMax" rz-slider-options="sliderVote.options"></rzslider>
+        </div>
+                
+                
+        <div class="flex-container">
+            <div class="titulo">
+                <p>Géneros</p>
+            </div>
+        </div>
+                
+        <div id="generos">
+            <div class="flex-container">
+                <a href="" class="generos" ng-click="searchGenre(28)"><p>Acción</p></a>
+                <a href="" class="generos" ng-click="searchGenre(12)"><p>Aventura</p></a>
+                <a href="" class="generos" ng-click="searchGenre(16)"><p>Animación</p></a>
+                <a href="" class="generos" ng-click="searchGenre(35)"><p>Comedia</p></a>
+                <a href="" class="generos" ng-click="searchGenre(80)"><p>Crimen</p></a>
+                <a href="" class="generos" ng-click="searchGenre(99)"><p>Documental</p></a>
+                <a href="" class="generos" ng-click="searchGenre(18)"><p>Drama</p></a>
+                <a href="" class="generos" ng-click="searchGenre(10751)"><p>Familiar</p></a>
+                <a href="" class="generos" ng-click="searchGenre(14)"><p>Fantasía</p></a>
+                <a href="" class="generos" ng-click="searchGenre(36)"><p>Históricas</p></a>
+                <a href="" class="generos" ng-click="searchGenre(27)"><p>Horror</p></a>
+                <a href="" class="generos" ng-click="searchGenre(10402)"><p>Música</p></a>
+                <a href="" class="generos" ng-click="searchGenre(9648)"><p>Misterio</p></a>
+                <a href="" class="generos" ng-click="searchGenre(10749)"><p>Romance</p></a>
+                <a href="" class="generos" ng-click="searchGenre(878)"><p>Ficción</p></a>
+                <a href="" class="generos" ng-click="searchGenre(10770)"><p>TV Movies</p></a>
+                <a href="" class="generos" ng-click="searchGenre(53)"><p>Thiller</p></a>
+                <a href="" class="generos" ng-click="searchGenre(10752)"><p>Guerra</p></a>
+                <a href="" class="generos" ng-click="searchGenre(37)"><p>Western</p></a>
+            </div>
+        </div>  
+    </aside>
+
+    <section>
+        
+            <div id="encontrados">
+                <p>Lista de favoritos</p>
+                <div>
+                    <!--<p>Ordenar</p>
+                    <img src="img/arrowdown.png">-->
+                </div>
+            </div>
+        
+        
+            <div class="capa" ng-repeat="film in films track by film.id">
+                <div class="datos flex-container">
+                    <div class="dato">
+                        <img class="icono" src="img/favorito.png">
+                        <p ng-click="filmDetails(film)">{{film.average}}%</p>
+                    </div>
+
+                    <div class="dato">
+                        <i class="fa fa-trash-o" ng-click="removeDesired(film)"></i>
+                        <p>Eliminar</p>
+                    </div>
+
+                    <div class="dato">
+                        <i class="fa fa-eye"></i>
+                        <a href="/film/{{film.id}}">
+                            <p>Ver</p>
+                        </a>
+                    </div>
+                </div>
+                <img class="foto" src="{{film.photo}}">
+            </div> 
+        
+    </section>
 </div>

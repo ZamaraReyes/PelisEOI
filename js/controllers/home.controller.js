@@ -5,80 +5,41 @@
         .module('EOI')
         .controller('HomeController', HomeController);
         
-    HomeController.$inject = ['$scope', '$http', 'FilmsFactory', 'FilmsHTTP', '$routeParams', '$timeout', '$window', '$sce'];
+    HomeController.$inject = ['$scope', '$http', 'FilmsFactory', 'FilmsHTTP', '$routeParams', '$timeout', '$sce'];
     
-    function HomeController($scope, $http, FilmsFactory, FilmsHTTP, $routeParams, $timeout, $window, $sce) {
+    function HomeController($scope, $http, FilmsFactory, FilmsHTTP, $routeParams, $timeout, $sce) {
         $scope.films = [];
         $scope.film = {};
         $scope.newFilms = {};
         $scope.favoriteFilms = [];
-        
-
-        $scope.searching = searching;
-        
         $scope.addDesired = addDesired;
-
-        $scope.search = search;
-        $scope.year = year;
-        $scope.voteCount = voteCount;
         $scope.filmDetails = filmDetails;
         
     
         activate();
-        /*searchPeli(1);
-        se
-        /*rangeFilter();
-        searchfor();
-        var genero = 28;
-        searchGenre(genero);*/
 
         
         function activate() {
             $scope.favoriteFilms = FilmsFactory.getDesiredList();
         }
         
-
-
         
-        function searchPeli() {
+        /*function searchPeli() {
 
             FilmsHTTP.searchFilms().then(function(film){
                 $scope.films = film;
             })
-        }
+        }*/
 
         
         function filmDetails(film) {
-            var filmId = film.id;
-            
+            var filmId = film.id;      
             FilmsHTTP.searchFilm(filmId).then(function(film){
                 $scope.films = film;
             })
-            console.log(film.id);
-            /*FilmsHTTP.similarFilm(filmId).then(function(film){
-                $scope.films = film;
-            })
-            console.log($scope.films);*/
         }
+
         
-        
-        function filmDeta(filmId) {
-            var filmImdb = film.imdb;
-            
-            FilmsHTTP.searchFilm(filmImdb).then(function(film){
-                $scope.films = film;
-            })
-            console.log(film.imdb);
-        }
-        
-        
-        
-        function searching(searchPeli) {
-            var pelicula = searchPeli;
-            FilmsHTTP.searching(pelicula).then(function(film){
-                $scope.films = film;
-            })
-        }
         
         function addDesired(film) {
             var respuesta = confirm("¿Deseas añadirlo en la lista de deseos?")
@@ -87,14 +48,7 @@
                 console.log(film);
             }
         }
-        
-        listGenre();
-        
-        function listGenre() {
-            FilmsHTTP.listGenre().then(function(film){
-                $scope.films = film;
-            })
-        }
+
         
         
         $scope.keyPress = function($event) {
@@ -102,17 +56,10 @@
             if (key === 13) {
                 var pelicula = $scope.searchPeli;
                 FilmsHTTP.search(pelicula).then(function(film){
-                    $scope.films = film;
+                    $scope.films = film.films;
+                    $scope.total = film.totalFilms;
                 })
-                /*$window.location.href = '/search';*/
             }
-        }
-        
-        function search(pelicula) {
-            var pelicula = $scope.searchPeli;
-            FilmsHTTP.search(pelicula).then(function(film){
-                $scope.films = film;
-            })
         }
         
         
@@ -129,11 +76,11 @@
         
         
         $scope.sliderVote = {
-            min: 0,
-            max: 5,
+            voteMin: 0,
+            voteMax: 10,
             options: {
-                ceil: 0,
-                floor: 5,
+                ceil: 10,
+                floor: 0,
                 draggableRange: true
             }
         };
@@ -144,24 +91,23 @@
         var max = $scope.slider.max;
         year(min, max);
         
-        $scope.totalFilms;
+        
  
-        function year(min, max, totalFilms) {
-            FilmsHTTP.year(min, max, totalFilms).then(function(film){
-                $scope.films = film;
-                console.log($scope.films);
-                console.log($scope.films[0]);
-                console.log(totalFilms);
+        function year(min, max) {
+            FilmsHTTP.year(min, max).then(function(film){
+                $scope.films = film.films;
+                $scope.total = film.totalFilms;
             })
         }
 
-
+        
             
         $scope.$watch("slider", function(min, max) {
             $scope.minyear = parseInt($scope.slider.min);
             $scope.maxyear = parseInt($scope.slider.max);
             FilmsHTTP.year($scope.minyear, $scope.maxyear).then(function(film){
-                $scope.films = film;
+                $scope.films = film.films;
+                $scope.total = film.totalFilms;
             })
             /*min = $scope.minyear;
             max = $scope.maxyear; 
@@ -169,9 +115,23 @@
         }, true);
             
         
-            
-        function voteCount(vote) {
-            FilmsHTTP.voteCount(vote).then(function(film){
+        
+        /*function totalFilms(min, max) {
+            FilmsHTTP.totalFilms(min, max).then(function(total){
+                $scope.total = total;
+            })
+        }
+        
+        totalFilms(min, max);*/
+        
+        
+        /*var voteMin = $scope.sliderVote.voteMin;
+        var voteMax = $scope.sliderVote.voteMax;
+        voteCount(voteMin, voteMax);
+        
+        
+        function voteCount(voteMin, voteMax) {
+            FilmsHTTP.voteCount(voteMin, voteMax).then(function(film){
                 $scope.films = film;
                 console.log($scope.films);
                 console.log($scope.films[0]);
@@ -179,7 +139,7 @@
         }
         
                                         
-        $scope.$watch("sliderVote", function(vote) {
+        $scope.$watch("sliderVote", function(voteMin, voteMax) {
             $scope.minvote = parseInt($scope.sliderVote.min);
             $scope.maxvote = parseInt($scope.sliderVote.max);
             FilmsHTTP.voteCount($scope.minvote, $scope.maxvote).then(function(film){
@@ -195,12 +155,9 @@
     
         $scope.searchGenre = function(genero) {
             FilmsHTTP.searchGenre(genero).then(function(film){
-                $scope.films = film;
-                console.log(genero);
-                console.log($scope.films);
+                $scope.films = film.films;
+                $scope.total = film.totalFilms;
             }) 
-        
-        
         
         }
     }
