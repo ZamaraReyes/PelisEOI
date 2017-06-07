@@ -17,7 +17,10 @@
             searching : searching,
             search : search,
             searchGenre : searchGenre,
-            year : year
+            year : year,
+            similarFilm : similarFilm,
+            listGenre : listGenre,
+            voteCount : voteCount
         }
         
         return service;
@@ -85,7 +88,7 @@
             var films = [];
             
             return $http.get('https://api.themoviedb.org/3/genre/'+genero+'/movies?api_key=d59205b54cbec181f81ddd43001c619b&language=en-US&include_adult=false&sort_by=created_at.asc').then(function(response){
-                response.data.results.forEach(function (element, position){
+                response.data.results.forEach(function (element){
                     var imagen = element.poster_path;
                     if (element.poster_path != null){         
                         films.push({
@@ -115,11 +118,17 @@
         }
         
         
-        function year(min, max) {
+        /*function totalFilms(total) {
+            var total = response.data.total_results;
+        }*/
+        
+        
+        function year(min, max, totalFilms) {
             var films = [];
             
             return $http.get('https://api.themoviedb.org/3/discover/movie?api_key=d59205b54cbec181f81ddd43001c619b&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte='+min+'&primary_release_date.lte='+max).then(function(response){
-                response.data.results.forEach(function (element, position){
+                var totalFilms = response.data.total_results;
+                response.data.results.forEach(function (element){
                                 
                     films.push({
                         id: element.id,
@@ -130,73 +139,122 @@
                         date: element.release_date,
                         average: element.vote_average
                     });
+                    console.log(response);
                     
                 });
                 return films;
             });
-            searchFilm(filmId);
+        }
+        
+        
+        function voteCount(vote) {
+            var films = [];
             
-            console.log(film.id);
+            return $http.get('https://api.themoviedb.org/3/discover/movie?api_key=d59205b54cbec181f81ddd43001c619b&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_average.gte='+vote).then(function(response){
+                response.data.results.forEach(function (element){
+                                
+                    films.push({
+                        id: element.id,
+                        title: element.title,
+                        overview: element.overview,
+                        photo: 'http://image.tmdb.org/t/p/w342'+element.poster_path,
+                        genre: element.genre_ids,
+                        date: element.release_date,
+                        average: element.vote_average
+                    });
+                    console.log(response);
+                    
+                });
+                return films;
+            });
+        }
+        
+        
+        function listGenre(genres) {
+            var genres = [];
+            
+            return $http.get('https://api.themoviedb.org/3/genre/movie/list?api_key=d59205b54cbec181f81ddd43001c619b&language=en-US').then(function(response){
+                response.data.genres.forEach(function (element){
+                    
+                    genres.push({
+                        id: element.id,
+                        name: element.name
+                    });
+                    
+                });
+                return genres;
+            })
         }
         
         
         
         function searchFilm(filmId) {
             var films = {};
+            var genres = [];
             
             return $http.get('https://api.themoviedb.org/3/movie/'+filmId+'?api_key=d59205b54cbec181f81ddd43001c619b&language=en-US').then(function(response){
+                console.log(response);
+                console.log(response.data.genres[0].name);
                 films.id = response.data.id;
                 films.imdb = response.data.imdb_id;
                 films.title = response.data.title;
+                films.genres = response.data.genres;
                 films.photo = 'http://image.tmdb.org/t/p/w342'+response.data.poster_path;
                 films.overview = response.data.overview;
                 films.date = response.data.release_date;
                 films.average = response.data.vote_average;
-                console.log(films);
-
-            
                 
                 var filmImdb = films.imdb;
 
                 return $http.get('https://omdbapi.com?i='+filmImdb+'&apikey=3370463f').then(function(response){
-                    films.genre = response.data.Genre;
                     films.year = response.data.Year;
                     films.runtime = response.data.Runtime;
                     films.database = response.data.Ratings[0].Value;
                     films.tomatoes = response.data.Ratings[1].Value;
                     films.metracritic = response.data.Ratings[2].Value;
                     console.log(response);
-
-
-                    return films;
+                    return $http.get('https://api.themoviedb.org/3/movie/'+filmId+'/videos?api_key=d59205b54cbec181f81ddd43001c619b&language=en-US').then(function(response){
+                        console.log(response.data.results.key);
+                        /*films.video = 'https://www.youtube.com/embed/'+response.data.results.key;*/
+                        response.data.results.forEach(function (element){
+                            console.log(element.key);
+                            films.video = 'https://www.youtube.com/embed/'+element.key;
+                            console.log(films.video);
+                        });
+                        
+                        return films;
+                        console.log(films);
+                    });
                     
                 });
-                
+            
             });
             
         }
         
         
         
-        /*function similarFilm(filmId) {
+        function similarFilm(filmId) {
             var similarFilms = [];
             
-            return $http.get('https://api.themoviedb.org/3/movie/'+filmId+'/similar?api_key=d59205b54cbec181f81ddd43001c619b&language=en-US&page=1').then(function(response){
-                response.data.results.forEach(function (element, position){
+            return $http.get('https://api.themoviedb.org/3/movie/'+filmId+'/similar?api_key=d59205b54cbec181f81ddd43001c619b&language=en-US').then(function(response){
+                response.data.results.forEach(function (element){
                     
-                    similarFilms.push({
-                        id: element.id,
-                        title: element.title,
-                        overview: element.overview,
-                        photo: 'http://image.tmdb.org/t/p/w342'+element.poster_path,
-                        average: element.vote_average
-                    });
+                    if (similarFilms.length < 5) {
+                        similarFilms.push({
+                            id: element.id,
+                            title: element.title,
+                            overview: element.overview,
+                            photo: 'http://image.tmdb.org/t/p/w342'+element.poster_path,
+                            average: element.vote_average
+                        });
+                    }
                     
                 });
                 return similarFilms;
                 console.log(response);
             })
-        }*/
+        }
 
         
         

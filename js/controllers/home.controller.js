@@ -3,12 +3,11 @@
     
     angular
         .module('EOI')
-        .filter('rangeFilter', 'searchfor')
         .controller('HomeController', HomeController);
         
-    HomeController.$inject = ['$scope', '$http', 'FilmsFactory', 'FilmsHTTP', '$routeParams', '$timeout', 'ngDialog'];
+    HomeController.$inject = ['$scope', '$http', 'FilmsFactory', 'FilmsHTTP', '$routeParams', '$timeout', '$window', '$sce'];
     
-    function HomeController($scope, $http, FilmsFactory, FilmsHTTP, $routeParams, $timeout, ngDialog) {
+    function HomeController($scope, $http, FilmsFactory, FilmsHTTP, $routeParams, $timeout, $window, $sce) {
         $scope.films = [];
         $scope.film = {};
         $scope.newFilms = {};
@@ -21,6 +20,7 @@
 
         $scope.search = search;
         $scope.year = year;
+        $scope.voteCount = voteCount;
         $scope.filmDetails = filmDetails;
         
     
@@ -88,14 +88,23 @@
             }
         }
         
+        listGenre();
+        
+        function listGenre() {
+            FilmsHTTP.listGenre().then(function(film){
+                $scope.films = film;
+            })
+        }
         
         
-        
-        $scope.keyPress = function($event, location) {
+        $scope.keyPress = function($event) {
             var key = $event.which || $event.keyCode;
             if (key === 13) {
-                search();
-                /*window.location.href = '/' + location;*/
+                var pelicula = $scope.searchPeli;
+                FilmsHTTP.search(pelicula).then(function(film){
+                    $scope.films = film;
+                })
+                /*$window.location.href = '/search';*/
             }
         }
         
@@ -117,23 +126,36 @@
                 draggableRange: true
             }
         };
+        
+        
+        $scope.sliderVote = {
+            min: 0,
+            max: 5,
+            options: {
+                ceil: 0,
+                floor: 5,
+                draggableRange: true
+            }
+        };
 
                 
         
         var min = $scope.slider.min;
         var max = $scope.slider.max;
         year(min, max);
+        
+        $scope.totalFilms;
  
-        function year(min, max) {
-            FilmsHTTP.year(min, max).then(function(film){
-            $scope.films = film;
-            console.log($scope.films);
-            console.log($scope.films[0]);
-        })
+        function year(min, max, totalFilms) {
+            FilmsHTTP.year(min, max, totalFilms).then(function(film){
+                $scope.films = film;
+                console.log($scope.films);
+                console.log($scope.films[0]);
+                console.log(totalFilms);
+            })
+        }
 
 
-            
-        $scope.data = {"grade" : 0};
             
         $scope.$watch("slider", function(min, max) {
             $scope.minyear = parseInt($scope.slider.min);
@@ -144,6 +166,25 @@
             /*min = $scope.minyear;
             max = $scope.maxyear; 
             /*year($scope.slider.min, $scope.slider.max);*/
+        }, true);
+            
+        
+            
+        function voteCount(vote) {
+            FilmsHTTP.voteCount(vote).then(function(film){
+                $scope.films = film;
+                console.log($scope.films);
+                console.log($scope.films[0]);
+            })
+        }
+        
+                                        
+        $scope.$watch("sliderVote", function(vote) {
+            $scope.minvote = parseInt($scope.sliderVote.min);
+            $scope.maxvote = parseInt($scope.sliderVote.max);
+            FilmsHTTP.voteCount($scope.minvote, $scope.maxvote).then(function(film){
+                $scope.films = film;
+            })
         }, true);
         
         
@@ -158,15 +199,9 @@
                 console.log(genero);
                 console.log($scope.films);
             }) 
-        }
         
         
-        $scope.mostrarModal = function() {
-            ngDialog.open({
-                template: 'film.html'
-            });
-    
-        }
+        
         }
     }
 })();

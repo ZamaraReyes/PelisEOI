@@ -1,3 +1,15 @@
+<div class="menu">
+    <nav class="wrapper flex-container">
+        <a href="/"><img src="img/logo.png"></a>
+            <ul>
+                <a href="/best"><li>Mejor valoradas</li></a>
+                <a href="/popularity"><li>Populares ahora</li></a>
+                <a href="/coming"><li>Próximamente</li></a>
+                <a href="/favorites"><li>Favoritos</li></a>
+            </ul>
+        <input type="text" placeholder="Encuentra tu película favorita" ng-model="searchPeli" ng-keypress="keyPress($event)">
+    </nav>
+</div>
 <div class="wrapper flex-container">
     <aside>
         <div id="filtro" class="flex-container">
@@ -14,9 +26,20 @@
                 <p>1979 - 2015</p>
             </div>
         </div>
-        
         <div class="filtro">
             <rzslider rz-slider-model="slider.min" rz-slider-high="slider.max" rz-slider-options="slider.options"></rzslider>
+        </div>
+        
+        <div class="flex-container">
+         <div class="titulo">
+                <p>Valoración IMDB</p>
+            </div>
+            <div class="ayo">
+                <p>0 - 5</p>
+            </div>
+        </div>
+        <div class="filtro">
+            <rzslider rz-slider-model="sliderVote.min" rz-slider-high="sliderVote.max" rz-slider-options="sliderVote.options"></rzslider>
         </div>
                 
                 
@@ -54,7 +77,7 @@
     <section>
         
             <div id="encontrados">
-                <p><span>{{films.length}}</span> películas encontradas</p>
+                <p><span>{{totalFilms}}</span> películas encontradas</p>
                 <div>
                     <p>Ordenar</p>
                     <img src="img/arrowdown.png">
@@ -88,7 +111,7 @@
 </div>
     <!--
 ng-click="addDesired(film)"
-ng-click="mostrarModal()"
+ng-click="mostrarModal(film)"
 <button ng-click="vm.openModal('custom-modal-1')">Open Modal 1</button>
 
 <i class="fa fa-angle-left" style="font-size: 24px"></i>

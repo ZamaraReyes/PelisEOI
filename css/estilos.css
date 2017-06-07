@@ -213,12 +213,28 @@ hr {
     margin-top: 15px;
 }
 
-#popup {
-    visibility: hidden;
+@keyframes fadeInRight {
+  from {
     opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-#popup:target {
+.fadeInRight {
+  animation-name: fadeInRight;
+}
+
+/*#popup {
+    visibility: hidden;
+    opacity: 0;
+}*/
+
+.ventana {
     visibility: visible;
     opacity: 1;
     background-color: rgba(0,0,0,0.6);
@@ -288,6 +304,7 @@ hr {
 .similar {
     margin: 30px 14px;
     height: 380px;
+    width: 270px;
     display: inline-block;
 }
 
@@ -295,8 +312,6 @@ hr {
     flex: 3;
     width: 270px;
     height: 240px;
-    /*background: url("../img/origen.jpg") 50% 60% no-repeat;*/
-    background-size: 140%;
 }
 
 .similar:nth-child(1) {
@@ -364,7 +379,7 @@ hr {
 .dato p {
     float: right;
     padding: 2;
-    color: #ffffff;
+    color: #919297;
 }
 
 .dato i {
@@ -417,10 +432,6 @@ hr {
     width: 100%;
     height: 100%;
     overflow: auto;
-    -webkit-animation: fadeInRight 5s;
-    -webkit-animation-timing-function: linear;
-    animation: fadeInRight 5s;
-    animation-timing-function: linear;
 }
             
 .ventana-contenido {
@@ -430,11 +441,17 @@ hr {
     border: 1px solid #888;
     width: 1224px;
     float: right;
+    color: #000000;
     box-sizing: border-box;
+    -webkit-animation: fadeInRight 1s;
+    -webkit-animation-timing-function: linear;
+    animation: fadeInRight 1s;
+    animation-timing-function: linear;
 }
             
 .ventana-contenido aside {
     border-right: 0px solid #ffffff;
+    width: auto;
 }
 
 .ventana-contenido section {
@@ -449,8 +466,9 @@ hr {
             
 .ventana-contenido h2 {
     flex: 3;
+    color: #000000;
     line-height: 0.9;
-    margin-bottom: 32px;
+    margin-bottom: 20px;
 }
           
 .ventana-contenido hr {
