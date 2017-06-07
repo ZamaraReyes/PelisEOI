@@ -213,9 +213,9 @@
                     films.tomatoes = response.data.Ratings[1].Value;
                     films.metracritic = response.data.Ratings[2].Value;
                     console.log(response);
+                    
                     return $http.get('https://api.themoviedb.org/3/movie/'+filmId+'/videos?api_key=d59205b54cbec181f81ddd43001c619b&language=en-US').then(function(response){
-                        console.log(response.data.results.key);
-                        /*films.video = 'https://www.youtube.com/embed/'+response.data.results.key;*/
+
                         response.data.results.forEach(function (element){
                             console.log(element.key);
                             films.video = 'https://www.youtube.com/embed/'+element.key;
