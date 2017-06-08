@@ -14,17 +14,15 @@
             searchBest : searchBest,
             searchPopular : searchPopular,
             searchComing : searchComing,
-            searching : searching,
             searchGenre : searchGenre,
             year : year,
             similarFilm : similarFilm,
-            voteCount : voteCount,
-            totalFilms : totalFilms,
             search : search,
             filmSubtitles : filmSubtitles
         }
         
         return service;
+        
         
         
         function searchFilms() {
@@ -57,7 +55,6 @@
                         });
                     }       
                 });
-                console.log(films);
                 return {
                     films : films,
                     totalFilms : totalFilms
@@ -72,22 +69,23 @@
             
             return $http.get('https://api.themoviedb.org/3/search/movie?api_key=d59205b54cbec181f81ddd43001c619b&query='+pelicula).then(function(response){
                 var totalFilms = response.data.total_results;
-                
+                console.log(response)
                 response.data.results.forEach(function (element, position){
                     
                     if (element.title == pelicula) {
                         films.push({
                             id: element.id,
-                            title: element.title,
-                            overview: element.overview,
                             photo: 'http://image.tmdb.org/t/p/w342'+element.poster_path,
-                            genre: element.genre_ids,
-                            date: element.release_date,
+                            average: element.vote_average
+                        });
+                    } else if (element.poster_path == null) {
+                        films.push({
+                            id: element.id,
+                            photo: 'http://placehold.it/100x150',
                             average: element.vote_average
                         });
                     }
                 });
-                console.log(films);
                 return {
                     films : films,
                     totalFilms : totalFilms
@@ -104,25 +102,16 @@
                 var totalFilms = response.data.total_results;
                 
                 response.data.results.forEach(function (element){
-                    var imagen = element.poster_path;
                     if (element.poster_path != null){         
                         films.push({
                             id: element.id,
-                            title: element.title,
-                            overview: element.overview,
                             photo: 'http://image.tmdb.org/t/p/w342'+element.poster_path,
-                            genre: element.genre_ids,
-                            date: element.release_date,
                             average: element.vote_average
                         });
                     } else if (element.poster_path == null) {
                         films.push({
                             id: element.id,
-                            title: element.title,
-                            overview: element.overview,
                             photo: 'http://placehold.it/100x150',
-                            genre: element.genre_ids,
-                            date: element.release_date,
                             average: element.vote_average
                         });
                     }
@@ -136,63 +125,18 @@
         
 
         
-        function year(min, max) {
+        function year(min, max, voteMin, voteMax) {
             var films = [];
             
-            return $http.get('https://api.themoviedb.org/3/discover/movie?api_key=d59205b54cbec181f81ddd43001c619b&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte='+min+'&primary_release_date.lte='+max).then(function(response){
+            return $http.get('https://api.themoviedb.org/3/discover/movie?api_key=d59205b54cbec181f81ddd43001c619b&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte='+min+'&primary_release_date.lte='+max+'&vote_average.gte='+voteMin+'&vote_average.lte='+voteMax).then(function(response){
                 var totalFilms = response.data.total_results;
                 
-                response.data.results.forEach(function (element){
-                                
+                response.data.results.forEach(function (element){       
                     films.push({
                         id: element.id,
-                        title: element.title,
-                        overview: element.overview,
                         photo: 'http://image.tmdb.org/t/p/w342'+element.poster_path,
-                        genre: element.genre_ids,
-                        date: element.release_date,
                         average: element.vote_average
-                    });
-                    
-                });
-                return {
-                    films : films,
-                    totalFilms : totalFilms
-                }
-            });
-        }
-
-        
-        
-        function totalFilms(min, max) {
-            
-            return $http.get('https://api.themoviedb.org/3/discover/movie?api_key=d59205b54cbec181f81ddd43001c619b&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte='+min+'&primary_release_date.lte='+max).then(function(response){
-                var totalFilms = response.data.total_results;
-                return totalFilms;
-            });
-        }
-        
-        
-        
-        function voteCount(voteMin, voteMax) {
-            var films = [];
-            
-            return $http.get('https://api.themoviedb.org/3/discover/movie?api_key=d59205b54cbec181f81ddd43001c619b&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_average.gte='+voteMin+'&vote_average.lte='+voteMax).then(function(response){
-                var totalFilms = response.data.total_results;
-                
-                response.data.results.forEach(function (element){
-                                
-                    films.push({
-                        id: element.id,
-                        title: element.title,
-                        overview: element.overview,
-                        photo: 'http://image.tmdb.org/t/p/w342'+element.poster_path,
-                        genre: element.genre_ids,
-                        date: element.release_date,
-                        average: element.vote_average
-                    });
-                    console.log(response);
-                    
+                    });   
                 });
                 return {
                     films : films,
@@ -209,11 +153,6 @@
             
             return $http.get('https://api.themoviedb.org/3/movie/'+filmId+'?api_key=d59205b54cbec181f81ddd43001c619b&language=en-US').then(function(response){
                 films.id = response.data.id;
-                
-                /*if (response.data.imdb_id != null) {
-                    
-                }*/
-                
                 films.imdb = response.data.imdb_id;
                 films.title = response.data.title;
                 films.genres = response.data.genres;
@@ -226,40 +165,34 @@
                 var filmImdb = films.imdb;
 
                 return $http.get('https://omdbapi.com?i='+filmImdb+'&apikey=3370463f').then(function(response){
+                    console.log(response);
                     films.year = response.data.Year;
                     films.production = response.data.Production;
                     films.runtime = response.data.Runtime;
-                    /*films.database = response.data.Ratings[0].Value;
-                    films.tomatoes = response.data.Ratings[1].Value;
-                    films.metracritic = response.data.Ratings[2].Value;*/
                     
-                    if (response.data.Ratings != null){
+                    if (response.data.Ratings.length == 3){
                         films.database = response.data.Ratings[0].Value;
                         films.tomatoes = response.data.Ratings[1].Value;
                         films.metracritic = response.data.Ratings[2].Value;
-                    } else if (response.data.Ratings == null) {
-                        films.database = '0';
-                        films.tomatoes = '0';
-                        films.metracritic = '0';
+                    } else if (response.data.Ratings.length != 3) {
+                        films.database = '0/10';
+                        films.tomatoes = '0%';
+                        films.metracritic = '0/100';
                     }
-                    
-                    console.log(response);
                     
                     
                     return $http.get('https://api.themoviedb.org/3/movie/'+filmId+'/videos?api_key=d59205b54cbec181f81ddd43001c619b&language=en-US').then(function(response){
-
+                        console.log(response);
                         response.data.results.forEach(function (element){
-                            films.video = 'https://www.youtube.com/embed/'+element.key;
-                        });
                         
-                        return films;
-                        console.log(films);
-                        
-                        films.forEach(function(element){
-                            if (element == null) {
-                                element == 0;
+                            if (response.data.results.length > 0) {
+                                films.video = 'https://www.youtube.com/embed/'+element.key;
+                            } else if (response.data.results.length < 0) {
+                                 films.video = 'http://placehold.it/100x150';      
                             }
-                        })
+                            
+                        });             
+                        return films;
                     });
                     
                 });
@@ -274,18 +207,21 @@
             var similarFilms = [];
             
             return $http.get('https://api.themoviedb.org/3/movie/'+filmId+'/similar?api_key=d59205b54cbec181f81ddd43001c619b&language=en-US').then(function(response){
-                response.data.results.forEach(function (element){
-                    
-                    if (similarFilms.length < 5) {
+                
+                response.data.results.forEach(function (element){                    
+                    if (similarFilms.length < 5 ) {
                         similarFilms.push({
                             id: element.id,
                             title: element.title,
-                            overview: element.overview,
-                            photo: 'http://image.tmdb.org/t/p/w342'+element.poster_path,
+                            photo: 'http://image.tmdb.org/t/p/w342'+element.poster_path
+                        });
+                    } else if (element.poster_path == null) {
+                        films.push({
+                            id: element.id,
+                            photo: 'http://placehold.it/100x150',
                             average: element.vote_average
                         });
-                    }
-                    
+                    }  
                 });
                 return similarFilms;
             })
@@ -304,8 +240,6 @@
                     
                     films.push({
                         id: element.id,
-                        title: element.title,
-                        overview: element.overview,
                         photo: 'http://image.tmdb.org/t/p/w342'+element.poster_path,
                         average: element.vote_average
                     });
@@ -330,11 +264,8 @@
                     
                     films.push({
                         id: element.id,
-                        title: element.title,
-                        overview: element.overview,
                         photo: 'http://image.tmdb.org/t/p/w342'+element.poster_path,
-                        average: element.vote_average,
-                        popularity: response.data.popularity
+                        average: element.vote_average
                     });
                     
                 });
@@ -344,6 +275,7 @@
                 }
             });
         }
+        
         
         
         function searchComing() {
@@ -356,8 +288,6 @@
                     
                     films.push({
                         id: element.id,
-                        title: element.title,
-                        overview: element.overview,
                         photo: 'http://image.tmdb.org/t/p/w342'+element.poster_path,
                         average: element.vote_average
                     });
@@ -369,27 +299,7 @@
                 }
             });
         }
-        
-        
-        
-        function searching(pelicula) {
-            var films = [];
-                
-            return $http.get('https://api.themoviedb.org/3/movie/upcoming?api_key=d59205b54cbec181f81ddd43001c619b&language=en-US&page=1').then(function(response){
-                response.data.results.forEach(function (element){
-                    
-                    films.push({
-                        id: element.id,
-                        title: element.title,
-                        overview: element.overview,
-                        photo: 'http://image.tmdb.org/t/p/w342'+element.poster_path,
-                        average: element.vote_average
-                    });
-                    
-                });
-                return films;
-            });
-        }
+
         
         
         function filmSubtitles(filmImdb) {
@@ -412,7 +322,7 @@
                     console.log(err);
                 });
             
-            return OpenSubtitles.search({
+            /*return OpenSubtitles.search({
                 imdbid: filmImdb,
                 limit: 'best',
                 sublanguageid: 'en,es'
@@ -424,7 +334,7 @@
                         de: res.de
                     }
                     return subtitles;
-                })
+                })*/
         }
     }
 })();

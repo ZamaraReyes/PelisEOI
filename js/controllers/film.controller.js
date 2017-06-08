@@ -37,6 +37,10 @@
             })
             
             
+            $scope.ventana = true;
+            $scope.close = function() {
+                $scope.ventana = !$scope.ventana;
+            }
             
         }
     }

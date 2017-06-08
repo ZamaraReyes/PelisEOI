@@ -13,7 +13,6 @@ a:link, a:visited {
 }
 
 nav {
-    /*padding: 15px 0;*/
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -22,8 +21,6 @@ nav {
 
 nav ul {
     float: left;
-    /*margin-left: 14px;
-    margin-right: 66px;*/
 }
 
 nav ul li {
@@ -79,12 +76,7 @@ nav input placeholder {
 nav {
     font-size: 16.14px;
 }
-
-/*h1, h2, span {
-    font-weight: 400;
-    font-family: "Nunito Sans", sans-serif;
-}*/
-            
+         
 h1 {
     font-size: 33px;
 }
@@ -105,15 +97,14 @@ p {
 iframe {
     margin: -4px 0;
     border: 1px solid #000000;
+    background-color: #000000;
 }
 
 aside {
     margin: 0;
     box-sizing: border-box;
-    /*flex: 3;*/
     padding-right: 25px;
     border-right: 1px solid #ebeef0;
-    /*justify-content: space-around;*/
     width: 270px;
 }
             
@@ -209,27 +200,6 @@ hr {
     margin-top: 15px;
 }
 
-@keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translate3d(100%, 0, 0);
-  }
-
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.fadeInRight {
-  animation-name: fadeInRight;
-}
-
-/*#popup {
-    visibility: hidden;
-    opacity: 0;
-}*/
-
 .ventana {
     visibility: visible;
     opacity: 1;
@@ -287,9 +257,6 @@ hr {
     flex: 3;
     width: 269px;
     height: 403px;
-    /*margin: 15px;
-    /*background: url("../img/interstellar.jpg") 50% no-repeat;
-    background-size: 108%;*/
     background-color: rgb(0,0,0);
 }
 
@@ -515,6 +482,7 @@ hr {
     margin: 18px 0;
     line-height: 1.8;
     height: 162px;
+    overflow: scroll;
 }
             
 .close {
@@ -528,6 +496,10 @@ hr {
     font-size: 38px;
     box-sizing: border-box;
     text-align: center;
+}
+
+.close:checked + label {
+    display: none;
 }
 
 .close:hover, .close:focus {
@@ -628,48 +600,4 @@ hr {
 
 .fadeOutRight {
     animation-name: fadeOutRight;
-}
-
-
-.ng-modal-overlay {
-  /* A dark translucent div that covers the whole screen */
-  position:absolute;
-  z-index:9999;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background-color:#000000;
-  opacity: 0.8;
-}
-.ng-modal-dialog {
-  /* A centered div above the overlay with a box shadow. */
-  z-index:10000;
-  position: absolute;
-  width: 50%; /* Default */
-
-  /* Center the dialog */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-
-  background-color: #fff;
-  box-shadow: 4px 4px 80px #000;
-}
-.ng-modal-dialog-content {
-  padding:10px;
-  text-align: left;
-}
-.ng-modal-close {
-  position: absolute;
-  top: 3px;
-  right: 5px;
-  padding: 5px;
-  cursor: pointer;
-  font-size: 120%;
-  display: inline-block;
-  font-weight: bold;
-  font-family: 'arial', 'sans-serif';
 }
