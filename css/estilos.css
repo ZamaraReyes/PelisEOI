@@ -180,6 +180,7 @@ hr {
     flex: 12;
     color: #f3644f;
     text-align: right;
+    cursor: pointer;
 }
 
 #generos .generos:nth-child(2) {

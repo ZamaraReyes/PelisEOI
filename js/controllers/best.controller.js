@@ -12,10 +12,7 @@
         $scope.film = {};
         $scope.favoriteFilms = [];
         $scope.addDesired = addDesired;
-        $scope.slider.min = 0;
-        $scope.slider.max = 0;
-        $scope.sliderVote.voteMin = 0;
-        $scope.sliderVote.voteMax = 0;
+        $scope.keyPress = keyPress;
         
     
         activate();
@@ -43,7 +40,7 @@
         }
         
         
-        $scope.keyPress = function($event) {
+        function keyPress($event) {
             var key = $event.which || $event.keyCode;
             if (key === 13) {
                 var pelicula = $scope.searchPeli;
@@ -53,5 +50,17 @@
                 })
             }
         }
+        
+        
+        $scope.slider = {
+            min: 0,
+            max: 0,
+        };
+        
+        
+        $scope.sliderVote = {
+            voteMin: 0,
+            voteMax: 0,
+        };
     }
 })();
