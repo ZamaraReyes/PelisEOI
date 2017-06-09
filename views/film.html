@@ -3,9 +3,7 @@
         <div class="flex-container">
             <h1 class="titulo">{{film.title}}
             <span>{{film.year}}</span></h1>
-            <a href="window.history.back();">
-                <span class="close">&times;</span>
-            </a>
+            <span class="close" ng-click="close()">&times;</span>
         </div>
             <hr>
                         
@@ -52,7 +50,6 @@
                              
         </div>
         <div class="subtitulo">
-            <p>{{subtitles | json}}</p>
             <ul>
                 <li><span>Subs:</span></li>
                 <span>{{subtitles.de}}</span>
@@ -64,7 +61,7 @@
             <h3>Películas similares</h3>
 
             <div class="flex-container">
-                <a href="/film/{{film.id}}" class="similar" ng-repeat="film in similarFilms | limitTo:4 track by film.id">
+                <a href="film/{{film.id}}" class="similar" ng-repeat="film in similarFilms | limitTo:4 track by film.id">
                     <div ng-style="{'background-image': 'url({{film.photo}})', 'background-size': 'cover'}"></div>
                     <h2>{{film.title}}</h2>
                 </a>

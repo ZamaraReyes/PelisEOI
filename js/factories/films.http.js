@@ -165,7 +165,6 @@
                 var filmImdb = films.imdb;
 
                 return $http.get('https://omdbapi.com?i='+filmImdb+'&apikey=3370463f').then(function(response){
-                    console.log(response);
                     films.year = response.data.Year;
                     films.production = response.data.Production;
                     films.runtime = response.data.Runtime;
@@ -182,7 +181,7 @@
                     
                     
                     return $http.get('https://api.themoviedb.org/3/movie/'+filmId+'/videos?api_key=d59205b54cbec181f81ddd43001c619b&language=en-US').then(function(response){
-                        console.log(response);
+
                         response.data.results.forEach(function (element){
                         
                             if (response.data.results.length > 0) {
@@ -315,7 +314,7 @@
             
             OpenSubtitles.login()
                 .then(res => {
-                    console.log(res.userinfo);
+                    console.log();
                 })
                 .catch(err => {
                     console.log(err);

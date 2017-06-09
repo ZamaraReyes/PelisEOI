@@ -429,6 +429,9 @@ hr {
 .ventana-contenido h2 {
     flex: 3;
     color: #000000;
+}
+
+.ventana-contenido section h2 {
     line-height: 0.9;
     margin-bottom: 20px;
 }

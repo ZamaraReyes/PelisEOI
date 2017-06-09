@@ -1,11 +1,11 @@
 <div class="menu">
     <nav class="wrapper flex-container">
-        <a href="/"><img src="img/logo.png"></a>
+        <a href="/PelisEOI"><img src="img/logo.png"></a>
             <ul>
-                <a href="/best"><li>Mejor valoradas</li></a>
-                <a href="/popularity"><li>Populares ahora</li></a>
-                <a href="/coming"><li>Próximamente</li></a>
-                <a href="/favorites"><li>Favoritos</li></a>
+                <a href="best"><li>Mejor valoradas</li></a>
+                <a href="popularity"><li>Populares ahora</li></a>
+                <a href="coming"><li>Próximamente</li></a>
+                <a href="favorites"><li>Favoritos</li></a>
             </ul>
         <input type="text" placeholder="Encuentra tu película favorita" ng-controller="HomeController" ng-model="searchPeli" ng-keypress="keyPress($event)">
     </nav>
@@ -52,25 +52,25 @@
                 
         <div id="generos">
             <div class="flex-container">
-                <a href="" class="generos" ng-click="searchGenre(28)"><p>Acción</p></a>
-                <a href="" class="generos" ng-click="searchGenre(12)"><p>Aventura</p></a>
-                <a href="" class="generos" ng-click="searchGenre(16)"><p>Animación</p></a>
-                <a href="" class="generos" ng-click="searchGenre(35)"><p>Comedia</p></a>
-                <a href="" class="generos" ng-click="searchGenre(80)"><p>Crimen</p></a>
-                <a href="" class="generos" ng-click="searchGenre(99)"><p>Documental</p></a>
-                <a href="" class="generos" ng-click="searchGenre(18)"><p>Drama</p></a>
-                <a href="" class="generos" ng-click="searchGenre(10751)"><p>Familiar</p></a>
-                <a href="" class="generos" ng-click="searchGenre(14)"><p>Fantasía</p></a>
-                <a href="" class="generos" ng-click="searchGenre(36)"><p>Históricas</p></a>
-                <a href="" class="generos" ng-click="searchGenre(27)"><p>Horror</p></a>
-                <a href="" class="generos" ng-click="searchGenre(10402)"><p>Música</p></a>
-                <a href="" class="generos" ng-click="searchGenre(9648)"><p>Misterio</p></a>
-                <a href="" class="generos" ng-click="searchGenre(10749)"><p>Romance</p></a>
-                <a href="" class="generos" ng-click="searchGenre(878)"><p>Ficción</p></a>
-                <a href="" class="generos" ng-click="searchGenre(10770)"><p>TV Movies</p></a>
-                <a href="" class="generos" ng-click="searchGenre(53)"><p>Thiller</p></a>
-                <a href="" class="generos" ng-click="searchGenre(10752)"><p>Guerra</p></a>
-                <a href="" class="generos" ng-click="searchGenre(37)"><p>Western</p></a>
+                <a href="#" class="generos" ng-click="searchGenre(28)"><p>Acción</p></a>
+                <a href="#" class="generos" ng-click="searchGenre(12)"><p>Aventura</p></a>
+                <a href="#" class="generos" ng-click="searchGenre(16)"><p>Animación</p></a>
+                <a href="#" class="generos" ng-click="searchGenre(35)"><p>Comedia</p></a>
+                <a href="#" class="generos" ng-click="searchGenre(80)"><p>Crimen</p></a>
+                <a href="#" class="generos" ng-click="searchGenre(99)"><p>Documental</p></a>
+                <a href="#" class="generos" ng-click="searchGenre(18)"><p>Drama</p></a>
+                <a href="#" class="generos" ng-click="searchGenre(10751)"><p>Familiar</p></a>
+                <a href="#" class="generos" ng-click="searchGenre(14)"><p>Fantasía</p></a>
+                <a href="#" class="generos" ng-click="searchGenre(36)"><p>Históricas</p></a>
+                <a href="#" class="generos" ng-click="searchGenre(27)"><p>Horror</p></a>
+                <a href="#" class="generos" ng-click="searchGenre(10402)"><p>Música</p></a>
+                <a href="#" class="generos" ng-click="searchGenre(9648)"><p>Misterio</p></a>
+                <a href="#" class="generos" ng-click="searchGenre(10749)"><p>Romance</p></a>
+                <a href="#" class="generos" ng-click="searchGenre(878)"><p>Ficción</p></a>
+                <a href="#" class="generos" ng-click="searchGenre(10770)"><p>TV Movies</p></a>
+                <a href="#" class="generos" ng-click="searchGenre(53)"><p>Thiller</p></a>
+                <a href="#" class="generos" ng-click="searchGenre(10752)"><p>Guerra</p></a>
+                <a href="#" class="generos" ng-click="searchGenre(37)"><p>Western</p></a>
             </div>
         </div>  
     </aside>
@@ -100,7 +100,7 @@
 
                     <div class="dato">
                         <i class="fa fa-eye"></i>
-                        <a href="/film/{{film.id}}">
+                        <a href="film/{{film.id}}">
                             <p>Ver</p>
                         </a>
                     </div>

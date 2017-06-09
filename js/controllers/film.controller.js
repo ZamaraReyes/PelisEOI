@@ -11,6 +11,7 @@
         
         $scope.similarFilms = [];
         $scope.subtitles = {};
+        $scope.close = close;
         
         
         activate();
@@ -32,6 +33,10 @@
             FilmsHTTP.similarFilm(filmId).then(function(film){
                 $scope.similarFilms = film;
             })
+        }
+        
+        function close() {
+            window.history.go(-1);
         }
     }
 })();
