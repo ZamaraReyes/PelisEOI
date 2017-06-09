@@ -322,7 +322,7 @@
                     console.log(err);
                 });
             
-            /*return OpenSubtitles.search({
+            return OpenSubtitles.search({
                 imdbid: filmImdb,
                 limit: 'best',
                 sublanguageid: 'en,es'
@@ -334,7 +334,7 @@
                         de: res.de
                     }
                     return subtitles;
-                })*/
+                })
         }
     }
 })();

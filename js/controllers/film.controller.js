@@ -24,24 +24,17 @@
                 $scope.film = film;
                 var filmImdb = film.imdb;
                 $scope.film.video = $sce.trustAsResourceUrl($scope.film.video);
-                
-                FilmsHTTP.filmSubtitles(filmImdb).then(function(subtitle){
-                    $scope.subtitles = subtitle;
-                    
-                })
-                
             })
             
             FilmsHTTP.similarFilm(filmId).then(function(film){
                 $scope.similarFilms = film;
             })
+            var filmImdb = 'tt0325980';
             
-            
-            $scope.ventana = true;
-            $scope.close = function() {
-                $scope.ventana = !$scope.ventana;
-            }
-            
+            FilmsHTTP.filmSubtitles(filmImdb).then(function(subtitle){
+                console.log(filmImdb);
+                $scope.subtitles = subtitle; 
+            })
         }
     }
 })();

@@ -1,0 +1,19 @@
+{
+  "name": "pelis-eoi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZamaraReyes/PelisEOI.git"
+  },
+  "author": "Zamara Reyes",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/ZamaraReyes/PelisEOI/issues"
+  },
+  "homepage": "https://github.com/ZamaraReyes/PelisEOI#readme"
+}
