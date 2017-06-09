@@ -134,11 +134,6 @@ hr {
 #filtro, #encontrados div p:nth-child(1), #encontrados p {
     color: #5c6269; 
 }
-
-#encontrados {
-    display: flex;
-    flex: 9;
-}
             
 #encontrados div {
     flex: 12;
@@ -524,7 +519,7 @@ hr {
     color: #5e6369;
 }
 
-.generos {
+#generos div a {
     display: inline-block;
     width: 116px;
     margin: 4.5px 0;
@@ -538,7 +533,7 @@ hr {
     text-align: center;
 }
 
-.generos:hover {
+#generos div a:hover {
     color: #2883d8;
     border: 2px solid #2883d8;
 }

@@ -10,7 +10,11 @@
     function ListController($scope, FilmsFactory, FilmsHTTP, $routeParams) {
         $scope.films = [];
         $scope.removeDesired = removeDesired;
-    
+        $scope.slider.min = 0;
+        $scope.slider.max = 0;
+        $scope.sliderVote.voteMin = 0;
+        $scope.sliderVote.voteMax = 0;
+        
         
         activate();
 

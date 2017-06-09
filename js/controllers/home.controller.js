@@ -16,6 +16,7 @@
         $scope.filmDetails = filmDetails;
         $scope.searchGenre = searchGenre;
         $scope.keyPress = keyPress;
+        $scope.clear = clear;
         
     
         activate();
@@ -111,6 +112,14 @@
                 $scope.films = film.films;
                 $scope.total = film.totalFilms;
             }) 
+        }
+        
+        
+        function clear(min, max, voteMin, voteMax) {
+            $scope.slider.min = 1979;
+            $scope.slider.max = 2015;
+            $scope.sliderVote.voteMin = 0;
+            $scope.sliderVote.voteMax = 10;
         }
     }
 })();

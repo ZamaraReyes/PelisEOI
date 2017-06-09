@@ -12,7 +12,11 @@
         $scope.film = {};
         $scope.favoriteFilms = [];
         $scope.addDesired = addDesired;
-
+        $scope.slider.min = 0;
+        $scope.slider.max = 0;
+        $scope.sliderVote.voteMin = 0;
+        $scope.sliderVote.voteMax = 0;
+        
     
         activate();
         searchBest();

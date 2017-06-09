@@ -15,7 +15,7 @@
         <div id="filtro" class="flex-container">
             <img src="img/filtro.png">
             <p>Filtrar</p>
-            <p>Borrar</p>
+            <p ng-click="clear(min, max, voteMin, voteMax)">Borrar</p>
         </div>
                 
         <div class="flex-container">
@@ -52,25 +52,25 @@
                 
         <div id="generos">
             <div class="flex-container">
-                <a href="#" class="generos" ng-click="searchGenre(28)"><p>Acción</p></a>
-                <a href="#" class="generos" ng-click="searchGenre(12)"><p>Aventura</p></a>
-                <a href="#" class="generos" ng-click="searchGenre(16)"><p>Animación</p></a>
-                <a href="#" class="generos" ng-click="searchGenre(35)"><p>Comedia</p></a>
-                <a href="#" class="generos" ng-click="searchGenre(80)"><p>Crimen</p></a>
-                <a href="#" class="generos" ng-click="searchGenre(99)"><p>Documental</p></a>
-                <a href="#" class="generos" ng-click="searchGenre(18)"><p>Drama</p></a>
-                <a href="#" class="generos" ng-click="searchGenre(10751)"><p>Familiar</p></a>
-                <a href="#" class="generos" ng-click="searchGenre(14)"><p>Fantasía</p></a>
-                <a href="#" class="generos" ng-click="searchGenre(36)"><p>Históricas</p></a>
-                <a href="#" class="generos" ng-click="searchGenre(27)"><p>Horror</p></a>
-                <a href="#" class="generos" ng-click="searchGenre(10402)"><p>Música</p></a>
-                <a href="#" class="generos" ng-click="searchGenre(9648)"><p>Misterio</p></a>
-                <a href="#" class="generos" ng-click="searchGenre(10749)"><p>Romance</p></a>
-                <a href="#" class="generos" ng-click="searchGenre(878)"><p>Ficción</p></a>
-                <a href="#" class="generos" ng-click="searchGenre(10770)"><p>TV Movies</p></a>
-                <a href="#" class="generos" ng-click="searchGenre(53)"><p>Thiller</p></a>
-                <a href="#" class="generos" ng-click="searchGenre(10752)"><p>Guerra</p></a>
-                <a href="#" class="generos" ng-click="searchGenre(37)"><p>Western</p></a>
+                <a href="#" ng-click="searchGenre(28)"><p>Acción</p></a>
+                <a href="#" ng-click="searchGenre(12)"><p>Aventura</p></a>
+                <a href="#" ng-click="searchGenre(16)"><p>Animación</p></a>
+                <a href="#" ng-click="searchGenre(35)"><p>Comedia</p></a>
+                <a href="#" ng-click="searchGenre(80)"><p>Crimen</p></a>
+                <a href="#" ng-click="searchGenre(99)"><p>Documental</p></a>
+                <a href="#" ng-click="searchGenre(18)"><p>Drama</p></a>
+                <a href="#" ng-click="searchGenre(10751)"><p>Familiar</p></a>
+                <a href="#" ng-click="searchGenre(14)"><p>Fantasía</p></a>
+                <a href="#" ng-click="searchGenre(36)"><p>Históricas</p></a>
+                <a href="#" ng-click="searchGenre(27)"><p>Horror</p></a>
+                <a href="#" ng-click="searchGenre(10402)"><p>Música</p></a>
+                <a href="#" ng-click="searchGenre(9648)"><p>Misterio</p></a>
+                <a href="#" ng-click="searchGenre(10749)"><p>Romance</p></a>
+                <a href="#" ng-click="searchGenre(878)"><p>Ficción</p></a>
+                <a href="#" ng-click="searchGenre(10770)"><p>TV Movies</p></a>
+                <a href="#" ng-click="searchGenre(53)"><p>Thiller</p></a>
+                <a href="#" ng-click="searchGenre(10752)"><p>Guerra</p></a>
+                <a href="#" ng-click="searchGenre(37)"><p>Western</p></a>
             </div>
         </div>  
     </aside>
@@ -79,10 +79,6 @@
         
             <div id="encontrados">
                 <p><span>{{total}}</span> películas encontradas</p>
-                <div>
-                    <!--<p>Ordenar</p>
-                    <img src="img/arrowdown.png">-->
-                </div>
             </div>
         
         
@@ -94,8 +90,8 @@
                     </div>
 
                     <div class="dato">
-                        <i class="fa fa-heart-o" ng-click="addDesired(film)"></i>
-                        <p>Favorito</p>
+                        <i class="fa fa-heart-o"></i>
+                        <p ng-click="addDesired(film)">Favorito</p>
                     </div>
 
                     <div class="dato">
