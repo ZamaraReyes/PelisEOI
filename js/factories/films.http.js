@@ -303,35 +303,35 @@
         
         
         function filmSubtitles(filmImdb) {
-            console.log(filmImdb);
             var subtitles = {};
+            
             const OS = require('opensubtitles-api');
             const OpenSubtitles = new OS({
-                useragent:'OSTestUserAgent',
+                useragent:'OSTestUserAgentTemp',
                 username: 'TeddyPicker91',
-                password: '134162jkl',
+                password: 'ponujir',
                 ssl: true
             });
             
             OpenSubtitles.login()
                 .then(res => {
-                    console.log(res.token);
                     console.log(res.userinfo);
                 })
                 .catch(err => {
                     console.log(err);
                 });
-            
+
             return OpenSubtitles.search({
-                imdbid: filmImdb,
+                sublanguageid: 'en,es',
                 limit: 'best',
-                sublanguageid: 'en,es'
+                imdbid: filmImdb
             })
-                .then(res => {
+            
+                .then(subtitle => {
                     subtitles = {
-                        es: res.es,
-                        en: res.en,
-                        de: res.de
+                        es: subtitle.es,
+                        en: subtitle.en,
+                        de: subtitle.de
                     }
                     return subtitles;
                 })

@@ -22,18 +22,15 @@
             
             FilmsHTTP.searchFilm(filmId).then(function(film){
                 $scope.film = film;
-                var filmImdb = film.imdb;
                 $scope.film.video = $sce.trustAsResourceUrl($scope.film.video);
+                
+                FilmsHTTP.filmSubtitles($scope.film.imdb).then(function(film){
+                    $scope.subtitles = film; 
+                })
             })
             
             FilmsHTTP.similarFilm(filmId).then(function(film){
                 $scope.similarFilms = film;
-            })
-            var filmImdb = 'tt0325980';
-            
-            FilmsHTTP.filmSubtitles(filmImdb).then(function(subtitle){
-                console.log(filmImdb);
-                $scope.subtitles = subtitle; 
             })
         }
     }

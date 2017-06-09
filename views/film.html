@@ -43,7 +43,6 @@
                                 
                 <div class="parrafo">
                     <p>{{film.overview}} (C) {{film.production}}</p>
-                    <!--<p>{{subtitles}}</p>-->
                                     
                     <h2>Trailer</h2>
                     <iframe width="703" height="342" src={{film.video}}>
@@ -53,12 +52,12 @@
                              
         </div>
         <div class="subtitulo">
-            <!--<ul>
+            <p>{{subtitles | json}}</p>
+            <ul>
                 <li><span>Subs:</span></li>
-                <a href="#"><li>en</li></a>
-                <a href="#"><li>es</li></a>
-                <a href="#"><li>de</li></a>
-            </ul>-->
+                <span>{{subtitles.de}}</span>
+                <a href="{{subtitle.url}}" ng-repeat="subtitle in subtitles track by subtitle.id"><li>{{subtitle.langcode}}</li></a>
+            </ul>
         </div>
         <hr>
         <div id="similares">

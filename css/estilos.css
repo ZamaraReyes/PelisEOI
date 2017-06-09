@@ -381,7 +381,6 @@ hr {
     display: -webkit-flex;
     display: flex;
     -webkit-flex-flow: row wrap;
-    /*justify-content: space-around;*/
 }
             
 .titulo {
@@ -573,18 +572,6 @@ hr {
 
 .fadeInRight {
     animation-name: fadeInRight;
-}
-
-@keyframes fadeInRightBig {
-    from {
-        opacity: 0;
-        transform: translate3d(2000px, 0, 0);
-    }
-
-    to {
-        opacity: 1;
-        transform: none;
-    }
 }
             
 @keyframes fadeOutRight {
