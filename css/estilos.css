@@ -453,27 +453,21 @@ hr {
     font-size: 18px;
 }
             
-.subtitulo p {
-    margin: 12px 0 29px 0;
-    font-weight: 700;
+.subtitulo {
+    margin: 12px 0 19px 0;
 }
             
 .subtitulo a {
+    display: inline-block;
     text-decoration: underline;
+    padding-right: 4px;
 }
 
-.subtitulo ul li {
+.subtitulo span {
     color: #919297;
+    font-weight: 700;
     font-family: "Nunito Sans", sans-serif;
     display: inline-block;
-}
-
-.subtitulo ul li span {
-    font-weight: 700;
-}
-
-.subtitulo ul {
-    padding: 0;
 }
             
 .parrafo p {

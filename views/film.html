@@ -50,11 +50,8 @@
                              
         </div>
         <div class="subtitulo">
-            <ul>
-                <li><span>Subs:</span></li>
-                <span>{{subtitles.de}}</span>
-                <a href="{{subtitle.url}}" ng-repeat="subtitle in subtitles track by subtitle.id"><li>{{subtitle.langcode}}</li></a>
-            </ul>
+            <span>Subs:</span>
+            <a href="{{subtitle.url}}" ng-repeat="subtitle in subtitles"><p>{{subtitle.langcode}}</p></a>
         </div>
         <hr>
         <div id="similares">

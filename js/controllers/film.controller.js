@@ -24,9 +24,11 @@
             FilmsHTTP.searchFilm(filmId).then(function(film){
                 $scope.film = film;
                 $scope.film.video = $sce.trustAsResourceUrl($scope.film.video);
-                
+
                 FilmsHTTP.filmSubtitles($scope.film.imdb).then(function(film){
-                    $scope.subtitles = film; 
+                    $scope.$apply(function () {
+                        $scope.subtitles = film;
+                    })
                 })
             })
             
